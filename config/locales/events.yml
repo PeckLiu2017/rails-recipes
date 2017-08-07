@@ -1,0 +1,10 @@
+   zh-CN:
+     activerecord:
+       attributes:
+         event:
+           name: "活动名称"
+           description: "描述"
+     errors:
+       messages:
+         not_saved:
+           one: "一个错误阻止了这个 %{resource} 被储存:"
