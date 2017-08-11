@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  resources :events do
-    resources :tickets, :controller => "event_tickets"
-
-      collection do
-        post :bulk_update
-      end
-
-  end
+  resources :events 
   resource :user
 
   namespace :admin do
     root "events#index"
-    resources :events
+    resources :events do
+      resources :tickets, :controller => "event_tickets"
+
+        collection do
+          post :bulk_update
+        end
+
+    end
 
     resources :users do
       resource :profile, :controller => "user_profiles"
