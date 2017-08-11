@@ -44,6 +44,8 @@ gem "nested_form_fields"
 # gem 'capistrano-rails', group: :development
 # Use datepicker
 gem 'bootstrap-datepicker-rails'
+# Use ckeditor
+gem 'ckeditor'
 
 group :development, :test do
   gem 'rspec-rails'

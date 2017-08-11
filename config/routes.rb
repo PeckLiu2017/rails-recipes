@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  resources :events
+  resources :events do
+    resources :tickets, :controller => "event_tickets"
+
+      collection do
+        post :bulk_update
+      end
+
+  end
   resource :user
 
   namespace :admin do
