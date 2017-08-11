@@ -42,11 +42,15 @@ gem "select2-rails"
 gem "nested_form_fields"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Use datepicker
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  # gem 'byebug', platform: :mri
+  gem 'pry'
+  gem 'awesome_rails_console'
 end
 
 group :development do
