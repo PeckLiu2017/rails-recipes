@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  resources :events 
+  resources :events
   resource :user
 
   namespace :admin do
@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
         collection do
           post :bulk_update
+        end
+
+        member do
+          post :reorder
         end
 
     end
