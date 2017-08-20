@@ -7,10 +7,12 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :registrations do
-      get "step/2" => "registrations#step2", :as => :step2
-      patch "step/2/update" => "registrations#step2_update", :as => :update_step2
-      get "step/3" => "registrations#step3", :as => :step3
-      patch "step/3/update" => "registration#step3_update", :as => :update_step3
+      member do
+        get "steps/2" => "registrations#step2", :as => :step2
+        patch "steps/2/update" => "registrations#step2_update", :as => :update_step2
+        get "steps/3" => "registrations#step3", :as => :step3
+        patch "steps/3/update" => "registrations#step3_update", :as => :update_step3
+      end
     end
   end
   resource :user
