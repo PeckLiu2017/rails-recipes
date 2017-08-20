@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   include RankedModel
   ranks :row_order
-  
+
   STATUS = ["draft", "public", "private"]
   validates_inclusion_of :status, :in => STATUS
   validates_presence_of :name, :friendly_id
@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
   belongs_to :category, :optional => true
   has_many :tickets, :dependent => :destroy, :inverse_of  => :event
+  has_many :registrations, :dependent => :destroy
   accepts_nested_attributes_for :tickets, :allow_destroy => true, :reject_if => :all_blank
 
 
