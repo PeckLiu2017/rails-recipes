@@ -1,18 +1,17 @@
-<h1><%= @event.name %> / Registrations</h1>
+<h1><%= @event.name %>
+  / Registrations</h1>
 
 <p class="text-right">
-<%= link_to "New Registration", new_admin_event_registration_path(@event), :class => "btn btn-primary" %>
+  <%= link_to "New Registration", new_admin_event_registration_path(@event), :class => "btn btn-primary" %>
 </p>
-
+<% if false %>
 <div class="submenu">
   <div class="btn-group">
     <%= link_to "全部 (#{@event.registrations.size})",
           admin_event_registrations_path(registration_filters(:status =>   nil)),
           :class => "btn btn-success btn-group #{(params[:status].blank?) ? "active" : ""}" %>
     <% Registration::STATUS.each do |s| %>
-    <%= link_to t(s, :scope => "registration.status") + " (#{@event.registrations.by_status(s).size})",
-          admin_event_registrations_path(registration_filters(:status => s)),
-          :class => "btn btn-success btn-group #{( params[:status] == s) ? "active" : ""}"
+    <%= link_to t(s, :scope => "registration.status") + " (#{@event.registrations.by_status(s).size})", admin_event_registrations_path(registration_filters(:status => s)), :class => "btn btn-success btn-group #{( params[:status] == s) ? "active" : ""}"
     %>
     <% end %>
   </div>
@@ -22,16 +21,11 @@
           admin_event_registrations_path(registration_filters(:ticket_id =>   nil)),
           :class => "btn btn-default btn-group #{(params[:ticket_id].blank?) ? "active" : ""}" %>
     <% @event.tickets.each do |t| %>
-    <%= link_to t.name + " (#{@event.registrations.by_ticket(t).size})",
-          admin_event_registrations_path(  registration_filters(:ticket_id => t.id)),
-          :class => "btn btn-default btn-group #{(params[:ticket_id].to_i == t.id)   ? "active" : ""}" %>
+    <%= link_to t.name + " (#{@event.registrations.by_ticket(t).size})", admin_event_registrations_path( registration_filters(:ticket_id => t.id)), :class => "btn btn-default btn-group #{(params[:ticket_id].to_i == t.id) ? "active" : ""}" %>
     <% end %>
   </div>
 </div>
-
- <p>
-   报名日期：<%= date_field_tag :start_on, params[:start_on] %>～<%= date_field_tag :end_on, params[:end_on] %>
- </p>
+<% end %>
 
 <%= form_tag admin_event_registrations_path(@event), :method => :get do %>
 
@@ -46,24 +40,26 @@
     <%= t.name %>
     (<%= + @event.registrations.where( :ticket_id => t.id ).size %>)</label>
   <% end %></p>
+<p>
+  报名日期：<%= date_field_tag :start_on, params[:start_on] %>～<%= date_field_tag :end_on, params[:end_on] %>
+</p>
 
 <p class="text-right">
   <%= submit_tag "送出筛选", :class => "btn btn-primary" %>
 </p>
 <% end %>
 
-
 <table class="table">
-<tr>
-  <th>ID</th>
-  <th>Ticket</th>
-  <th>Name</th>
-  <th>Status</th>
-  <th>E-mail</th>
-  <th>建立时间</th>
-  <th>Actions</th>
-</tr>
-<% @registrations.each do |registration| %>
+  <tr>
+    <th>ID</th>
+    <th>Ticket</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>E-mail</th>
+    <th>建立时间</th>
+    <th>Actions</th>
+  </tr>
+  <% @registrations.each do |registration| %>
   <tr>
     <td><%= registration.id %></td>
     <td><%= registration.ticket.name %></td>
@@ -74,8 +70,8 @@
     <td>
       <%= link_to "Edit", edit_admin_event_registration_path(@event, registration), :class => "btn btn-default" %>
       <%= link_to "Delete", admin_event_registration_path(@event, registration), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
-  </tr>
-<% end %>
-</table>
+    </tr>
+    <% end %>
+  </table>
 
-<%= paginate @registrations %>
+  <%= paginate @registrations %>
