@@ -52,6 +52,8 @@ gem 'ranked-model'
 gem 'jquery-ui-rails'
 # paging display contents
 gem 'kaminari'
+# use ransack to search
+gem 'ransack'
 
 group :development, :test do
   gem 'rspec-rails'
