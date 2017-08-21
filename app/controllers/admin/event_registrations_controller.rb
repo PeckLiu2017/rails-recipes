@@ -1,8 +1,33 @@
-class Admin::EventRegistrationsController < ApplicationController
+class Admin::EventRegistrationsController < AdminController
   before_action :find_event
 
   def index
     @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page]).per(10)
+
+    if params[:status].present? && Registration::STATUS.include?(params[:status])
+     @registrations = @registrations.by_status(params[:status])
+    end
+
+    if params[:ticket_id].present?
+     @registrations = @registrations.by_ticket(params[:ticket_id])
+    end
+
+    if Array(params[:statuses]).any?
+      @registrations = @registrations.by_status(params[:statuses])
+    end
+
+    if Array(params[:ticket_ids]).any?
+      @registrations = @registrations.by_ticket(params[:ticket_ids])
+    end
+
+    if params[:start_on].present?
+      @registrations = @registrations.where( "created_at >= ?", Date.parse(params[:start_on]).beginning_of_day )
+    end
+
+    if params[:end_on].present?
+      @registrations = @registrations.where( "created_at <= ?", Date.parse(params[:end_on]).end_of_day )
+    end
+
   end
 
   def destroy
