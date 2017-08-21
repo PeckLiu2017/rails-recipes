@@ -50,7 +50,8 @@ gem 'ckeditor'
 gem 'ranked-model'
 # reorder by drag through ajax
 gem 'jquery-ui-rails'
-
+# paging display contents
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
