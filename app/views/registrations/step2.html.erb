@@ -6,8 +6,11 @@
 
   <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
     <%= f.label :name, "姓名", :class => "control-label" %>
-    <%= f.text_field :name, :class => "form-control" %>
-<%# binding.pry %>
+    <!-- 服务器后端验证 -->
+    <%#= f.text_field :name, :class => "form-control" %>
+    <!-- HTML5前端验证 -->
+    <%= f.text_field :name, :class => "form-control", :required => true, :autofocus => true %>
+    <%# binding.pry %>
     <% if f.object.errors[:name] %>
       <span class="help-block">姓名<%= safe_join(f.object.errors[:name], "、") %></span>
     <% end %>
@@ -15,7 +18,8 @@
 
   <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
     <%= f.label :email, "E-mail", :class => "control-label" %>
-    <%= f.email_field :email, :class => "form-control" %>
+    <%#= f.email_field :email, :class => "form-control" %>
+    <%= f.email_field :email, :class => "form-control", :required => true %>
     <% if f.object.errors[:name] %>
       <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
     <% end %>
@@ -23,7 +27,8 @@
 
   <div class="form-group <%= (f.object.errors[:name].any?)? "has-error" : "" %>">
     <%= f.label :cellphone, "电话", :class => "control-label" %>
-    <%= f.text_field :cellphone, :class => "form-control" %>
+    <%#= f.text_field :cellphone, :class => "form-control" %>
+    <%= f.text_field :cellphone, :class => "form-control", :required => true %>
     <% if f.object.errors[:name] %>
       <span class="help-block"><%= safe_join(f.object.errors[:name], "、") %></span>
     <% end %>
