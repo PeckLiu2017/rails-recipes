@@ -54,6 +54,9 @@ gem 'jquery-ui-rails'
 gem 'kaminari'
 # use ransack to search
 gem 'ransack'
+# upload
+gem 'carrierwave'
+gem "mini_magick"
 
 group :development, :test do
   gem 'rspec-rails'
