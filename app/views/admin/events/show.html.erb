@@ -8,25 +8,41 @@
 
 <%= sanitize @event.description %>
 
-<!-- <canvas id="myChart1" width="400" height="200"></canvas>
+<canvas id="myChart1" width="400" height="200"></canvas>
 <script>
-var ctx1 = document.getElementById("myChart1");
-var myChart1 = new Chart(ctx1, {
-   type: 'bar',
-   data: <%= raw @data1.to_json %>,
-   options: {
-       scales: {
-           yAxes: [{
-               ticks: {
-                   beginAtZero:true
-               }
-           }]
-       }
-   }
-});
-</script> -->
+  var ctx1 = document.getElementById("myChart1");
+  var myChart1 = new Chart(ctx1, {
+    type: 'bar',
+    //  data: <%= raw @data1.to_json %>,  options: {      scales: {          yAxes: [{              ticks: {                  beginAtZero:true              }          }]      }  }
+    data: {
+      "labels": [
+        "Guest", "VIP 第一期", "VIP 第二期"
+      ], // 这是 Y 轴的标籤
 
-<canvas id="myChart2" width="400" height="200"></canvas>
+      "datasets": [
+        {
+          "label": "报名尚未完成", // 这是第一个资料集
+
+          "data": [
+            160, 164, 160
+          ],
+          "backgroundColor": "#36A2EB",
+          "borderWidth": 1
+        }, {
+          "label": "报名成功", // 这是第二个资料集
+
+          "data": [
+            164, 182, 170
+          ],
+          "backgroundColor": "#FF6384",
+          "borderWidth": 1
+        }
+      ]
+    }
+  });
+</script>
+
+<!-- <canvas id="myChart2" width="400" height="200"></canvas>
 <script>
 var ctx2 = document.getElementById("myChart2");
 var myChart2 = new Chart(ctx2, {
@@ -42,4 +58,4 @@ var myChart2 = new Chart(ctx2, {
         }
     }
 });
-</script>
+</script> -->
