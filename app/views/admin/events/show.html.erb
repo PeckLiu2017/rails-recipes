@@ -8,7 +8,7 @@
 
 <%= sanitize @event.description %>
 
-<canvas id="myChart1" width="400" height="200"></canvas>
+<!-- <canvas id="myChart1" width="400" height="200"></canvas>
 <script>
   var ctx1 = document.getElementById("myChart1");
   var myChart1 = new Chart(ctx1, {
@@ -40,7 +40,7 @@
       ]
     }
   });
-</script>
+</script> -->
 
 <!-- <canvas id="myChart2" width="400" height="200"></canvas>
 <script>
@@ -59,3 +59,20 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 </script> -->
+<canvas id="myChart3" width="400" height="200"></canvas>
+<script>
+var ctx3 = document.getElementById("myChart3");
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: <%= raw @data3.to_json %>,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
