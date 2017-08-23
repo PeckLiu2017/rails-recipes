@@ -60,6 +60,11 @@ gem "mini_magick"
 
 gem 'paper_trail'
 
+# output Excel
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
+
 group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

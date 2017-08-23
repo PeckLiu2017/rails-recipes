@@ -48,6 +48,7 @@ class Admin::EventRegistrationsController < AdminController
         end
         send_data csv_string, :filename => "#{@event.friendly_id}-registrations-#{Time.now.to_s(:number)}.csv"
       }
+      format.xlsx # part of data
     end
   end
 
