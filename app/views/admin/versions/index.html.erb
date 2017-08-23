@@ -23,7 +23,7 @@
       <% end %>
       </ul>
     </td>
-    <td><%= version.whodunnit && User.find(version.whodunnit).display_name %></td>
+    <td><%= version.version_author && User.find(version.version_author).display_name %></td>
     <td>
       <% if version.event != 'create' %>
       <%= link_to "Undo", admin_version_undo_path(version), :data => { :confirm => "Are you sure?"}, :method => :post, class: "btn btn-danger" %>
