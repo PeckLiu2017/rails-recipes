@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_locale
   before_action :set_timezone
+  before_action :require_admin!
 
   def set_locale
     if params[:locale] && I18n.available_locales.include?( params[:locale].to_sym )
@@ -13,6 +14,13 @@ class ApplicationController < ActionController::Base
   def set_timezone
     if current_user && current_user.time_zone
       Time.zone = current_user.time_zone
+    end
+  end
+
+  def require_admin!
+    if current_user.role != "admin"
+      flash[:alert] = "权限不足"
+      redirect_to root_path
     end
   end
 end
