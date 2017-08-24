@@ -21,13 +21,18 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "events#index"
-    
+
     resources :versions do
       post :undo
     end
 
     resources :events do
-      resources :registrations, :controller => "event_registrations"
+      resources :registrations, :controller => "event_registrations" do
+        collection do
+          post :import
+        end
+      end
+      
       resources :tickets, :controller => "event_tickets"
 
         collection do
