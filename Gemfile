@@ -70,6 +70,8 @@ gem 'letter_opener'
 
 # css supporte for emial-reader
 gem 'premailer-rails'
+# for redis
+gem 'sidekiq'
 
 group :development, :test do
   gem 'rspec-rails'
