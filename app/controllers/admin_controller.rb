@@ -13,10 +13,10 @@ class AdminController < ApplicationController
       end
     end
 
-    def require_admin!
-      unless current_user.is_admin?
-        flash[:alert] = "权限不足3"
-        redirect_to root_path
-      end
-    end
+    # def require_admin!
+    #   unless current_user.is_admin?
+    #     flash[:alert] = "权限不足3"
+    #     redirect_to root_path
+    #   end
+    # end
 end
